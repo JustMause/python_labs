@@ -47,3 +47,33 @@ print(f'НДС: {vat_amount:.2F} ₽')
 print(f'Итого к оплате: {total:.2F} ₽')
 
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab1/03.png)
+
+### Задание 4
+
+m = int(input())
+
+hours = m // 60
+
+min = m % 60
+
+print(f"{hours}:{min:02d}")
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab1/04.png)
+
+### Задание 5
+
+FIO = input().split()
+
+F = FIO[0]
+
+I = FIO[1]
+
+O = FIO[2]
+
+In = F[0]+I[0]+O[0]
+
+sum = (len(F)+len(I)+len(O))+2
+
+print(In,sum)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab1/05.png)
