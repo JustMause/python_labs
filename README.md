@@ -10,4 +10,4 @@ age = int(input())
 
 print(f'Привет, {name}! Через год тебе будет {age+1}.')
 
-[pf] (C:/Users/pc/python_labs/images/lab1/01.png)
+![Image alt](https://github.com/{JustMause}/{python_labs}/raw/{branch}/{path}/image.png)
