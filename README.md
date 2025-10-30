@@ -77,3 +77,8 @@ sum = (len(F)+len(I)+len(O))+2
 print(In,sum)
 
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab1/05.png)
+
+
+## Лабораторная работа 2
+
+### Задание 1
