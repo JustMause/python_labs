@@ -125,3 +125,9 @@ print(flatten(b))
 print(flatten(c))
 
 print(flatten(d))
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/01_2.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/02_2.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/03_2.png)
