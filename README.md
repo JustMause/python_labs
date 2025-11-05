@@ -334,11 +334,11 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
     
     return sorted_items[:n]
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/01_3.png)
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab3/01_3.png)
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/02_3.png)
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab3/02_3.png)
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/03_3.png)
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab3/03_3.png)
 
 ### Задание 2
 
@@ -391,5 +391,5 @@ if __name__ == "__main__":
 
     main()
     
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/04_3.png)
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab3/04_3.png)
     
