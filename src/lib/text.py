@@ -11,7 +11,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
         result = result.replace('ё', 'е').replace('Ё', 'Е')
     special_simvols = ['\t', '\r', '\n']
     for simvol in special_simvols:
-        result = result.replace(char, ' ')
+        result = result.replace(simvol, ' ')
     result = ' '.join(result.split())
 
     return result
