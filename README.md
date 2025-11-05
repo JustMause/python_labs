@@ -268,3 +268,128 @@ def format_record(rec):
     return f"{formatted_fio}, гр. {group}, GPA {formatted_gpa}"
 
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/07_2.png)
+
+## Лабораторная работа 3
+
+### Задание 1
+
+import re
+
+
+def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
+
+    if not text:
+    
+        return ""
+        
+    result = text
+    
+    if casefold:
+    
+        result = result.casefold()
+        
+    if yo2e:
+    
+        result = result.replace('ё', 'е').replace('Ё', 'Е')
+        
+    special_simvols = ['\t', '\r', '\n']
+    
+    for simvol in special_simvols:
+    
+        result = result.replace(simvol, ' ')
+        
+    result = ' '.join(result.split())
+
+    return result
+
+def tokenize(text: str) -> list[str]:
+
+    if not text:
+    
+        return []
+        
+    pattern = r'\w+(?:-\w+)*'
+    
+    tokens = re.findall(pattern, text)
+    
+    return tokens
+
+def count_freq(tokens: list[str]) -> dict[str, int]:
+
+    freq_dict = {}
+    
+    for token in tokens:
+    
+        freq_dict[token] = freq_dict.get(token, 0) + 1
+
+    return freq_dict
+
+def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
+
+    if not freq:
+    
+        return []
+        
+    sorted_items = sorted(freq.items(),key=lambda x: (-x[1], x[0]))
+    
+    return sorted_items[:n]
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/01_3.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/02_3.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/03_3.png)
+
+### Задание 2
+
+from lib.text import normalize, tokenize, count_freq, top_n
+
+import sys
+
+
+def main():
+
+    text = sys.stdin.buffer.read().decode('utf-8')
+    
+    if not text.strip():
+    
+        print("Нет входных данных")
+        
+        return
+        
+    normalized_text = normalize(text)
+    
+    tokens = tokenize(normalized_text)
+    
+
+    if not tokens:
+    
+        print("В тексте не найдено слов")
+        
+        return
+
+    total_words = len(tokens)
+    
+    freq_dict = count_freq(tokens)
+    
+    unique_words = len(freq_dict)
+    
+    top_words = top_n(freq_dict, 5)
+
+    print(f"Всего слов: {total_words}")
+    
+    print(f"Уникальных слов: {unique_words}")
+    
+    print("Топ-5:")
+    
+    for word, count in top_words:
+    
+        print(f"{word}: {count}")
+
+
+if __name__ == "__main__":
+
+    main()
+    
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab2/04_3.png)
+    
