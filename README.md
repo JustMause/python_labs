@@ -393,3 +393,120 @@ if __name__ == "__main__":
     
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab3/04_3.png)
     
+## Лабораторная работа 4
+
+### Задание 1
+
+import csv
+
+from pathlib import Path
+
+from typing import Iterable, Sequence
+
+def read_text(path: str | Path, encoding: str = "utf-8") -> str:
+    try:
+    
+        return Path(path).read_text(encoding=encoding)
+        
+    except FileNotFoundError:
+    
+        return "Такого файла нету"
+        
+    except UnicodeDecodeError:
+    
+        return "Неудалось изменить кодировку"
+
+def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...] | None = None) -> None:
+
+    p = Path(path)
+    
+    with p.open('w', newline="", encoding="utf-8") as file:
+    
+        f = csv.writer(file)
+        
+        if header is None and rows == []:
+        
+            f.writerow(('a', 'b'))
+            
+        if header is not None:
+        
+            f.writerow(header)
+            
+        if rows != []:
+        
+            const = len(rows[0])
+            
+            for i in rows:
+            
+                if len(i) != const:
+                
+                    return ValueError
+                    
+        f.writerows(rows)
+
+def ensure_parent_dir(path: str | Path) -> None:
+
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/01_4.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/02_4.png)
+
+### Задание 2
+
+from io_txt_csv import read_text, write_csv, ensure_parent_dir
+
+import sys
+
+from pathlib import Path
+
+from text import normalize, tokenize, count_freq, top_n
+
+
+sys.path.append(r'C:\Users\Home\Documents\GitHub\src\lib')
+
+
+
+def exist_path(path_f: str):
+
+    return Path(path_f).exists()
+
+
+def main(file: str, encoding: str = 'utf-8'):
+
+    if not exist_path(file):
+    
+        raise FileNotFoundError
+
+    file_path = Path(file)
+    
+    text = read_text(file, encoding=encoding)
+    
+    norm = normalize(text)
+    
+    tokens = tokenize(norm)
+    
+    freq_dict = count_freq(tokens)
+    
+    top = top_n(freq_dict, 5)
+    
+    top_sort = sorted(top, key=lambda x: (x[1], x[0]),
+                      reverse=True)
+                      
+    report_path = file_path.parent / 'report.csv'
+    
+    write_csv(top_sort, report_path, header=('word', 'count'))
+
+    print(f'Всего слов: {len(tokens)}')
+    
+    print(f'Уникальных слов: {len(freq_dict)}')
+    
+    print('Топ-5:')
+    
+    for cursor in top_sort:
+    
+        print(f'{cursor[0]}: {cursor[-1]}')
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/03_4.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/04_4.png)
