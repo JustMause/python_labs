@@ -448,7 +448,6 @@ def ensure_parent_dir(path: str | Path) -> None:
 
     Path(path).parent.mkdir(parents=True, exist_ok=True)
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/01_4.png)
 
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/02_4.png)
 
@@ -507,6 +506,5 @@ def main(file: str, encoding: str = 'utf-8'):
     
         print(f'{cursor[0]}: {cursor[-1]}')
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/03_4.png)
 
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab4/04_4.png)
