@@ -706,3 +706,172 @@ csv_to_xlsx(r"C:\Users\Home\python_labs\data\samples\cities.csv", r"C:\Users\Hom
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab5/05_5.png)
 
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab5/06_5.png)
+
+## Лабораторная работа 6
+
+### Задание 1
+
+import argparse
+
+from pathlib import Path
+
+from lib.text import normalize, tokenize, count_freq, top_n
+
+def main():
+
+    parser = argparse.ArgumentParser(description="CLI‑утилиты лабораторной №6")
+    
+    subparsers = parser.add_subparsers(dest="command")
+    
+    cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
+    
+    cat_parser.add_argument("--input", required=True)
+    
+    cat_parser.add_argument("-n", action="store_true", help="Нумеровать строки")
+    
+    stats_parser = subparsers.add_parser("stats", help="Частоты слов")
+    
+    stats_parser.add_argument("--input", required=True)
+    
+    stats_parser.add_argument("--top", type=int, default=5)
+    
+    args = parser.parse_args()
+    
+    file_path = Path(args.input)
+    
+    if not file_path.exists():
+    
+        parser.error(f"Файл '{args.input}' не найден")
+        
+    if args.command == "cat":
+    
+        try:
+        
+            with file_path.open("r", encoding="utf-8") as f:
+            
+                for i, line in enumerate(f, start=1):
+                
+                    line = line.rstrip("\n")
+                    
+                    if args.n:
+                    
+                        print(f"{i}: {line}")
+                        
+                    else:
+                    
+                        print(line)
+                        
+        except Exception as e:
+        
+            parser.error(f"Ошибка при чтении файла: {e}")
+            
+    elif args.command == "stats":
+    
+        try:
+            with file_path.open("r", encoding="utf-8") as f:
+            
+                text = f.read()
+                
+                top_words = top_n(count_freq(tokenize(normalize(text))), args.top)
+                
+            if not top_words:
+            
+                print("Слова в файле не найдены")
+                
+                return
+            print(f"Топ {args.top} слов:")
+            
+            for word, count in top_words:
+            
+                print(f"{word}: {count}")
+                
+        except Exception as e:
+        
+            parser.error(f"Ошибка при чтении файла: {e}")
+            
+    else:
+    
+        parser.print_help()
+        
+if __name__ == "__main__":
+
+    main()
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/01_6.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/02_6.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/03_6.png)
+
+### Задание 2
+
+import argparse
+
+from lib.json_csv import *
+
+from lib.csv_xlsx import *
+
+def main():
+
+    parser = argparse.ArgumentParser()
+    
+    sub = parser.add_subparsers(dest="cmd")
+
+    # json → csv
+    
+    json2csv_parser = sub.add_parser("json2csv")
+    
+    json2csv_parser.add_argument("--in", dest="input", required=True, help="Путь к входному JSON")
+    
+    json2csv_parser.add_argument("--out", dest="output", required=True, help="Путь к выходному CSV")
+
+    # csv → json
+    
+    csv2json_parser = sub.add_parser("csv2json")
+    
+    csv2json_parser.add_argument("--in", dest="input", required=True, help="Путь к входному CSV")
+    
+    csv2json_parser.add_argument("--out", dest="output", required=True, help="Путь к выходному JSON")
+
+    # csv → xlsx
+    
+    csv2xlsx_parser = sub.add_parser("csv2xlsx")
+    
+    csv2xlsx_parser.add_argument("--in", dest="input", required=True, help="Путь к входному CSV")
+    
+    csv2xlsx_parser.add_argument("--out", dest="output", required=True, help="Путь к выходному XLSX")
+
+    args = parser.parse_args()
+
+    input_path = Path(args.input)
+    
+    if not input_path.exists():
+    
+        parser.error(f"Входной файл '{args.input}' не найден")
+
+    if args.cmd == "json2csv":
+    
+        json_to_csv(args.input, args.output)
+        
+    elif args.cmd == "csv2json":
+    
+        csv_to_json(args.input, args.output)
+        
+    elif args.cmd == "csv2xlsx":
+    
+        csv_to_xlsx(args.input, args.output)
+        
+    else:
+        parser.print_help()
+        
+
+
+if __name__ == "__main__":
+
+    main()
+    
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/04_6.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/05_6.png)
+
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/06_6.png)
