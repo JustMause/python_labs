@@ -797,9 +797,9 @@ if __name__ == "__main__":
 
     main()
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/01_6.png)
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/01_6.jpg)
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/02_6.png)
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/02_6.jpg)
 
 ![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab6/03_6.png)
 
