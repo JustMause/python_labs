@@ -1723,14 +1723,10 @@ class Stack:
             raise IndexError("pop from empty Stack")
             
         return self._data.pop()
-
-  # Метод просмотра верхнего элемента без удаления
   
     def peek(self) -> Optional[Any]:
     
         return self._data[-1] if self._data else None
-
-    # Метод проверки стека на пустоту
     
     def is_empty(self) -> bool:
     
