@@ -1693,4 +1693,4 @@ if __name__ == "__main__":
 
 ### update(fio, **fields) — обновить поля существующего студента
 
-![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab9/03_9.jpg)
+![Image alt](https://github.com/JustMause/python_labs/raw/main/images/lab9/02_9.png)
